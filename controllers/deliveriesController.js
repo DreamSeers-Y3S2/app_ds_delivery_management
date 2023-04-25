@@ -57,6 +57,11 @@ const getDeliveriesForEachOrder = asyncHandler(async (req, res) => {
 	res.json(delivery);
 });
 
+const getDeliveries = asyncHandler(async (req, res) => {
+	const deliveries = await Delivery.find();
+	res.json(deliveries);
+});
+
 const getDeliveryById = asyncHandler(async (req, res) => {
 	const delivery = await Delivery.findById(req.params.id);
 	console.log(delivery);
@@ -103,6 +108,7 @@ const updateDelivery = asyncHandler(async (req, res) => {
 module.exports = {
 	createDelivery,
 	getDeliveriesForEachOrder,
+	getDeliveries,
 	getDeliveryById,
 	updateDelivery,
 };
