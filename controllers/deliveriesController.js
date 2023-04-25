@@ -14,7 +14,10 @@ const createDelivery = asyncHandler(async (req, res) => {
 		status,
 	} = req.body;
 
-	const orders = await Order.findOne({ _id: order });
+	const orders = await Order.findById(order);
+
+	const orderId = orders.orderID;
+	console.log(orderId);
 
 	if (
 		!order ||
@@ -31,6 +34,7 @@ const createDelivery = asyncHandler(async (req, res) => {
 	} else {
 		const delivery = new Delivery({
 			order,
+			orderId,
 			customerName,
 			customerEmail,
 			customerPhone,
