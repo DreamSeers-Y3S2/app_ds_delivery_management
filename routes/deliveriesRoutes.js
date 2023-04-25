@@ -2,6 +2,7 @@ const express = require("express");
 const {
 	createDelivery,
 	getDeliveriesForEachOrder,
+	getDeliveries,
 	getDeliveryById,
 	updateDelivery,
 } = require("../controllers/deliveriesController");
