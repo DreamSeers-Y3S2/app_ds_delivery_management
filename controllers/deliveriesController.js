@@ -69,6 +69,7 @@ const getDeliveryById = asyncHandler(async (req, res) => {
 
 const updateDelivery = asyncHandler(async (req, res) => {
 	const {
+		orderId,
 		customerName,
 		customerEmail,
 		customerPhone,
@@ -80,6 +81,7 @@ const updateDelivery = asyncHandler(async (req, res) => {
 
 	const delivery = await Delivery.findById(req.params.id);
 	if (delivery) {
+		delivery.orderId = orderId;
 		delivery.customerName = customerName;
 		delivery.customerEmail = customerEmail;
 		delivery.customerPhone = customerPhone;
