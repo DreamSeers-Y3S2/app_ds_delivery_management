@@ -1,10 +1,12 @@
 const Delivery = require("../models/deliveriesModel");
+const Customer = require("../models/customerModel")
 const Order = require("../models/orderModel");
 const asyncHandler = require("express-async-handler");
 
 const createDelivery = asyncHandler(async (req, res) => {
 	const {
 		order,
+		customer,
 		customerName,
 		customerEmail,
 		customerPhone,
@@ -21,6 +23,7 @@ const createDelivery = asyncHandler(async (req, res) => {
 
 	if (
 		!order ||
+		!customer||
 		!customerName ||
 		!customerEmail ||
 		!customerPhone ||
@@ -33,15 +36,16 @@ const createDelivery = asyncHandler(async (req, res) => {
 		throw new Error("Please Fill all the fields");
 	} else {
 		const delivery = new Delivery({
-			order,
-			orderId,
-			customerName,
-			customerEmail,
-			customerPhone,
-			deliveryServiceName,
-			deliveryServiceEmail,
-			deliveryServicePhone,
-			status,
+		order,
+		customer,
+		orderId,
+		customerName,
+		customerEmail,
+		customerPhone,
+		deliveryServiceName,
+		deliveryServiceEmail,
+		deliveryServicePhone,
+		status,
 		});
 
 		const createDelivery = await delivery.save();
@@ -51,10 +55,10 @@ const createDelivery = asyncHandler(async (req, res) => {
 	}
 });
 
-const getDeliveriesForEachOrder = asyncHandler(async (req, res) => {
-	const order = await Order.findById(req.params.id);
-	const delivery = await Delivery.find({ order: order._id });
-	res.json(delivery);
+const getDeliveriesForEachCustomer = asyncHandler(async (req, res) => {
+	const customer = await Customer.findById(req.params.id);
+	const deliveries = await Delivery.find({ customer: customer._id });
+	res.json(deliveries);
 });
 
 const getDeliveries = asyncHandler(async (req, res) => {
@@ -93,7 +97,7 @@ const updateDelivery = asyncHandler(async (req, res) => {
 
 module.exports = {
 	createDelivery,
-	getDeliveriesForEachOrder,
+	getDeliveriesForEachCustomer,
 	getDeliveries,
 	getDeliveryById,
 	updateDelivery,

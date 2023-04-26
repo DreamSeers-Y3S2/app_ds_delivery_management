@@ -1,7 +1,7 @@
 const express = require("express");
 const {
 	createDelivery,
-	getDeliveriesForEachOrder,
+	getDeliveriesForEachCustomer,
 	getDeliveries,
 	getDeliveryById,
 	updateDelivery,
@@ -10,8 +10,8 @@ const {
 const router = express.Router();
 
 router.route("/create").post(createDelivery);
-router.route("/order/get/:id").get(getDeliveriesForEachOrder);
-router.route("/").get(getDeliveries);
+router.route("/all").get(getDeliveries);
+router.route("/customer/all/:id").get(getDeliveriesForEachCustomer);
 router.route("/get/:id").get(getDeliveryById).put(updateDelivery);
 
 module.exports = router;
