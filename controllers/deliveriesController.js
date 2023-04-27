@@ -20,7 +20,6 @@ const createDelivery = asyncHandler(async (req, res) => {
 	const orders = await Order.findById(order);
 
 	const orderId = orders.orderID;
-	console.log(orderId);
 
 	if (
 		!order ||
