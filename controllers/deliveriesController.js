@@ -1,5 +1,5 @@
 const Delivery = require("../models/deliveriesModel");
-const Customer = require("../models/customerModel")
+const Customer = require("../models/customerModel");
 const Order = require("../models/orderModel");
 const asyncHandler = require("express-async-handler");
 
@@ -24,7 +24,7 @@ const createDelivery = asyncHandler(async (req, res) => {
 
 	if (
 		!order ||
-		!customer||
+		!customer ||
 		!customerName ||
 		!customerEmail ||
 		!customerPhone ||
@@ -37,22 +37,21 @@ const createDelivery = asyncHandler(async (req, res) => {
 		throw new Error("Please Fill all the fields");
 	} else {
 		const delivery = new Delivery({
-		order,
-		customer,
-		orderId,
-		customerName,
-		customerEmail,
-		customerPhone,
-		deliveryServiceName,
-		deliveryServiceEmail,
-		deliveryServicePhone,
-		status,
+			order,
+			customer,
+			orderId,
+			customerName,
+			customerEmail,
+			customerPhone,
+			deliveryServiceName,
+			deliveryServiceEmail,
+			deliveryServicePhone,
+			status,
 		});
 
 		const createDelivery = await delivery.save();
 
 		res.status(201).json(createDelivery);
-		console.log(req.body);
 	}
 });
 // get  delivery for each single customer
@@ -70,7 +69,6 @@ const getDeliveries = asyncHandler(async (req, res) => {
 // get deliveries according to their id
 const getDeliveryById = asyncHandler(async (req, res) => {
 	const delivery = await Delivery.findById(req.params.id);
-	console.log(delivery);
 	if (delivery) {
 		res.json(delivery);
 	} else {
@@ -78,17 +76,13 @@ const getDeliveryById = asyncHandler(async (req, res) => {
 	}
 });
 
-// update delivery status 
+// update delivery status
 const updateDelivery = asyncHandler(async (req, res) => {
-	const {
-		status,
-	} = req.body;
+	const { status } = req.body;
 
 	const delivery = await Delivery.findById(req.params.id);
 	if (delivery) {
 		delivery.status = status;
-
-		console.log(delivery);
 
 		const updatedDelivery = await delivery.save();
 		res.json(updatedDelivery);

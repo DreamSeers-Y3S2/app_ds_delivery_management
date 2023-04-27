@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-//delivery routes  for customer 
+//delivery routes  for customer
 router.route("/create").post(createDelivery);
 router.route("/all").get(getDeliveries);
 

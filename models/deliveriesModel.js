@@ -1,3 +1,7 @@
+/**
+ * This model is implemented for
+ * the Delivery management
+ */
 const mongoose = require("mongoose");
 
 const deliverySchema = mongoose.Schema({

@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 	res.send("Delivery API is Running");
 });
 
+//delivery start server route
 app.use("/delivery", deliveryRoutes);
 
 const PORT = process.env.PORT || 5007;

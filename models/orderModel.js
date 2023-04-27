@@ -1,3 +1,7 @@
+/**
+ * This model is implemented for
+ * the Order management
+ */
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
